@@ -41,18 +41,6 @@ const getRepos = (name, options) => {
   }).then (res => res.json ());
 };
 
-const test = () => {
-  console.log (`${endpoint}/orgs/facebook/repos`);
-
-  return fetch (`${endpoint}/orgs/facebook/repos`, {
-    headers: {Authorization: authkey},
-  })
-    .then (res => res.json ())
-    .then (console.log);
-};
-
-test ();
-
 module.exports = {
   search,
   getUser,

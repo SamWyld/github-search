@@ -35,7 +35,7 @@ Github REST API:
 
 Notes:
 
-For the first time, I decided to use CSS directly from a single file. I thought it might have saved time. In retrospect, it's become quite cluttered and hard to navigate. If I were to come back to the project, I'd most likely use Styles Components. I like creating reusable little bits of code that I can reuse. I feel as if that had been lost in this case. When looking at the UI I normally like to create things with the purpose in mind. This task's requirements didn't really tell me anything about how the user would like to use the application. I found myself having to have a think about what the use case could be. In the end, I decided to go for a very simple look where information is given simply.
+For the first time, I've decided to use CSS directly from a single file. I thought it might have saved time. In retrospect, it's become quite cluttered and hard to navigate. If I were to come back to the project, I'd most likely use Styles Components. I like creating reusable little bits of code that I can reuse. I feel as if that had been lost in this case. When looking at the UI I normally like to create things with the purpose in mind. This task's requirements didn't really tell me anything about how the user would like to use the application. I found myself having to have a think about what the use case could be. In the end, I decided to go for a very simple look where information is given simply.
 
 In addition, some of the styles don't scale well for all viewports. If given more time, I would make sure all the styles scale dependant on a user's screen/window size. Most of them do scale however there are some positioning styles that don't translate well.
 
@@ -43,4 +43,6 @@ Furthermore, I'd look for some safety when it comes to types. Having no history 
 
 I decided to create the user list using a table. Using a table seemed like the most logical thing and kept to the best standards. However, I now realise that I should have used cards. The users don't have a lot of information. If a user were looking at the table, they would find it hard to follow. Using cards would have allowed me to show much more information with less confusion.
 
-Cypress is a bit of a must-have tool for me. Cypress offers solid E2E testing that can aid in testing, ensuring no regression.
+Implementing Cypress helped me to test. Adding a test that ensures that the app works in the way I expect it to.
+
+Following the task, I wanted to add a filter for the user's repository. This did not seem possible going off of the Github API. It is possible to get an org's repositories using filters/sorts/pagination. Given more time I would change the application to work with orgs. Then it would be possible to filter/sort/paginate all of the results using the API.
