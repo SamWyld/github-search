@@ -9,7 +9,9 @@ import {getUser, getUserRepos} from '../api';
 function User({match}) {
   const [user, setUser] = React.useState (null);
   const [repos, setRepos] = React.useState ([]);
+  const [page, setPage] = React.useState (1);
   const [searchValue, setSearchValue] = React.useState ('');
+  const [repoFilter, setRepoFilter] = React.useState ('');
 
   let history = useHistory ();
 
@@ -22,12 +24,23 @@ function User({match}) {
 
   React.useEffect (
     () => {
-      getUserRepos (match.params.user).then (data => setRepos (data));
+      getUserRepos (match.params.user, repoFilter, page).then (data =>
+        setRepos (data)
+      );
     },
     [match.params.user]
   );
 
-  const handleChange = newValue => {
+  const repoSearchChange = newValue => {
+    setRepoFilter (newValue);
+    getUserRepos (match.params.user, newValue, page).then (data => {
+      console.log ('repos');
+      console.log (data);
+      setRepos (data);
+    });
+  };
+
+  const userSearchChange = newValue => {
     setSearchValue (newValue);
   };
 
@@ -38,17 +51,17 @@ function User({match}) {
 
   return (
     <div className="user">
-      <form className="search-user-form" onSubmit={handleSubmit}>
-        <Input
-          onChange={handleChange}
-          value={searchValue}
-          placeholder={'Search for another github user...'}
-        />
-      </form>
       <div className="user-container">
         {!user
           ? <div> Loading... </div>
           : <div className="user-info">
+              <form className="search-user-form" onSubmit={handleSubmit}>
+                <Input
+                  onChange={userSearchChange}
+                  value={searchValue}
+                  placeholder={'Search for another github user...'}
+                />
+              </form>
               <div className="user-picture-container">
                 <img className="user-picture" src={user.avatar_url} />
               </div>
@@ -59,6 +72,13 @@ function User({match}) {
               <div className="user-info-item">{user.following} following</div>
             </div>}
         <div className="repos-list">
+          <div className="repo-filter">
+            <Input
+              onChange={repoSearchChange}
+              value={repoFilter}
+              placeholder="Filter repositories..."
+            />
+          </div>
           {repos.map (repo => {
             return (
               <div className="repo-container" key={repo.id}>

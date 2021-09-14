@@ -21,8 +21,9 @@ app.get ('/api/users/:user', (req, res) => {
 });
 
 app.get ('/api/users/:user/repos', (req, res) => {
+  const {q, page} = req.query;
   const user = req.params.user;
-  getRepos (user).then (data => {
+  getRepos (user, [['per_page', '5'], ['q', q], ['page', page]]).then (data => {
     res.json (data);
   });
 });
