@@ -1,24 +1,11 @@
 import React from 'react';
-import Search from './Search';
-import UserCard from './UserCard';
-import {getUsers} from '../api';
-
 import {useHistory} from 'react-router-dom';
 
-const Pagination = ({page, previous, next}) => {
-  return (
-    <div className="pagination">
-      <button
-        className="pagination-button"
-        disabled={page === 1}
-        onClick={previous}
-      >
-        Previous
-      </button>
-      <button className="pagination-button" onClick={next}>Next</button>
-    </div>
-  );
-};
+import Input from './Input';
+import UserCard from './UserCard';
+import Pagination from './Pagination';
+
+import {getUsers} from '../api';
 
 function UserList({match}) {
   const [users, setUsers] = React.useState ([]);
@@ -63,7 +50,7 @@ function UserList({match}) {
     <div className="user-list-container">
       <div className="user-list-content">
         <form className="user-list-search" onSubmit={handleSubmit}>
-          <Search onChange={handleChange} value={searchValue} />
+          <Input onChange={handleChange} value={searchValue} />
         </form>
         <div className="user-table-container">
           <table className="user-table">

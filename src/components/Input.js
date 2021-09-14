@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Search({onChange, value, placeholder = 'Search for github user...'}) {
+function Input({onChange, value, placeholder = 'Search for github user...'}) {
   return (
     <input
       onChange={e => onChange (e.target.value)}
@@ -10,4 +10,4 @@ function Search({onChange, value, placeholder = 'Search for github user...'}) {
   );
 }
 
-export default Search;
+export default Input;

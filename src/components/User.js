@@ -1,8 +1,10 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 
+import Input from './Input';
+import Pagination from './Pagination';
+
 import {getUser, getUserRepos} from '../api';
-import Search from './Search';
 
 function User({match}) {
   const [user, setUser] = React.useState (null);
@@ -10,15 +12,6 @@ function User({match}) {
   const [searchValue, setSearchValue] = React.useState ('');
 
   let history = useHistory ();
-
-  const handleChange = newValue => {
-    setSearchValue (newValue);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault ();
-    history.push (`/search/${searchValue}/1`);
-  };
 
   React.useEffect (
     () => {
@@ -34,10 +27,19 @@ function User({match}) {
     [match.params.user]
   );
 
+  const handleChange = newValue => {
+    setSearchValue (newValue);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault ();
+    history.push (`/search/${searchValue}/1`);
+  };
+
   return (
     <div className="user">
       <form className="search-user-form" onSubmit={handleSubmit}>
-        <Search
+        <Input
           onChange={handleChange}
           value={searchValue}
           placeholder={'Search for another github user...'}
@@ -69,6 +71,7 @@ function User({match}) {
               </div>
             );
           })}
+          <Pagination page={1} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './Search';
+import Input from './Input';
 import logo from '../assets/github-logo.svg';
 import {useHistory} from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const Home = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="home-page-search">
-          <Search onChange={handleChange} value={searchValue} />
+          <Input onChange={handleChange} value={searchValue} />
         </div>
       </form>
     </div>

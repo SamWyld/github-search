@@ -216,5 +216,5 @@ th {
   display: flex;
   padding: 24px;
   margin: 24px;
-  border: #ffd900 1px solid;
+  border-bottom: #ffd900 1px solid;
 }
