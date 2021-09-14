@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Github technical test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://docs.github.com/en/rest
 
-## Available Scripts
+Task:
 
-In the project directory, you can run:
+- Seach box to search for username/org
+- A list of repos are returned
+- The list needs to be sortable, paginated, filterable (we'll find the sorts and filters when looking at the api)
 
-### `npm start`
+Tech:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Clean organised code
+- Most modern version of JS
+- Explain how to make it deployable
+- Share code via github
+- README with explanation of choices
+- Use React
+- Use CSS framework of my choice
+- Node/Express server for delivering my app
+- Call github API via the server rather than directly using CORS
+- Use fetch for all client side requests
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Bonus:
 
-### `npm test`
+- Clicking on the repo will display info about the repo
+- Write some E2E tests
+- Write an integration test for one of your REST APIs (just 1 test)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+Github REST API:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Endpoint: https://api.github.com
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Notes:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For the first time, I've decided to use CSS directly from a single file. I thought it might have saved time. In retrospect, it's become quite cluttered and hard to navigate. If I were to come back to the project, I'd most likely use Styles Components. I like creating reusable little bits of code that I can reuse that I felt I lost a little bit in this case.
 
-### `npm run eject`
+Furthermore, I'd look for some safety when it comes to types. Having no history using the Github API, I found myself writing comments that detailed the type signatures. Since I was already there writing the type signatures, it would have been optimal to have the types enforced at the compiler level as TypeScript would. Realistically, all I did was leave myself open to human error.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I decided to create the user list using a table. Using a table seemed like the most logical thing and kept to the best standards. However, I now realise that I should have used cards. The users don't have a lot of information. If a user were looking at the table, they would find it hard to follow. Using cards would have allowed me to show much more information with less confusion.
