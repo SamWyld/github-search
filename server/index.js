@@ -28,7 +28,9 @@ app.get ('/api/users/:user/repos', (req, res) => {
 });
 
 app.get ('*', function (req, res) {
-  res.redirect ('/');
+  res.sendFile ('index.html', {
+    root: path.join (__dirname, '..', 'build'),
+  });
 });
 
 app.listen (5000, () => {

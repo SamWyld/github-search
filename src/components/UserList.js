@@ -1,7 +1,8 @@
 import React from 'react';
 import Search from './Search';
 import UserCard from './UserCard';
-import {getMockUsers} from '../mocks/users';
+import {getUsers} from '../api';
+
 import {useHistory} from 'react-router-dom';
 
 const Pagination = ({page, previous, next}) => {
@@ -29,21 +30,10 @@ function UserList({match}) {
 
   React.useEffect (
     () => {
-      fetch (
-        `http://localhost:5000/api/users?search=${searchValue}&page=${match.params.page}`
-      )
-        .then (res => res.json ())
-        .then (data => setUsers (data.items));
+      getUsers (searchValue, page).then (data => setUsers (data.items));
     },
-    [page]
+    [page, match.params.user]
   );
-
-  // React.useEffect (() => {
-  //   getMockUsers ().then (data => {
-  //     console.log (data);
-  //     setUsers (data.items);
-  //   });
-  // }, []);
 
   const handleChange = newValue => {
     setSearchValue (newValue);
@@ -51,10 +41,8 @@ function UserList({match}) {
 
   const handleSubmit = event => {
     event.preventDefault ();
-    history.push (`/search/${searchValue}`);
+    history.push (`/search/${searchValue}/1`);
   };
-
-  const handleClick = () => {};
 
   const handlePrevious = () => {
     // It should not be possible to go to a page less than 1
@@ -87,9 +75,7 @@ function UserList({match}) {
             </thead>
             <tbody>
               {users.map (user => {
-                return (
-                  <UserCard key={user.id} onClick={handleClick} user={user} />
-                );
+                return <UserCard key={user.id} user={user} />;
               })}
             </tbody>
           </table>

@@ -26,8 +26,8 @@ const getUser = name => {
 };
 
 const getRepos = name => {
-  console.log (`${endpoint}/users/${name}/repos`);
-  return fetch (`${endpoint}/users/${name}/repos`, {
+  console.log (`${endpoint}/users/${name}/repos?per_page=5`);
+  return fetch (`${endpoint}/users/${name}/repos?per_page=5`, {
     headers: {Authorization: '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'},
   }).then (res => res.json ());
 };

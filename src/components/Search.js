@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Search({onChange, value}) {
+function Search({onChange, value, placeholder = 'Search for github user...'}) {
   return (
     <input
       onChange={e => onChange (e.target.value)}
       value={value}
-      placeholder="Search for github user..."
+      placeholder={placeholder}
     />
   );
 }

@@ -163,10 +163,15 @@ th {
   border-radius: 12px;
 }
 
+.search-user-form {
+  padding-left: 150px;
+  padding-top: 25px;
+}
+
 .user-container {
   width: 100%;
   display: flex;
-  padding-top: 100px;
+  padding-top: 40px;
   flex-direction: row;
   justify-content: center;
 }
