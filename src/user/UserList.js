@@ -24,13 +24,16 @@ function UserList({match}) {
 
   let history = useHistory ();
 
-  React.useEffect (() => {
-    fetch (
-      `http://localhost:5000/users?search=${searchValue}&page=${match.params.page}`
-    )
-      .then (res => res.json ())
-      .then (data => setUsers (data.items));
-  }, []);
+  React.useEffect (
+    () => {
+      fetch (
+        `http://localhost:5000/users?search=${searchValue}&page=${match.params.page}`
+      )
+        .then (res => res.json ())
+        .then (data => setUsers (data.items));
+    },
+    [page]
+  );
 
   //   React.useEffect (() => {
   //     getMockUsers ().then (data => {
