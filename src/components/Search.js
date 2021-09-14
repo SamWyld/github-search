@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Search({onChange, value, className}) {
+function Search({onChange, value}) {
   return (
     <input
       onChange={e => onChange (e.target.value)}

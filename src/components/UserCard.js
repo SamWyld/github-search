@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 /*
 User value is going to be what we need to know about the user
@@ -25,7 +26,11 @@ score: 1,
 function UserCard({onClick, user}) {
   return (
     <tr onClick={onClick} className="user-card-container">
-      <td>{user.login}</td>
+      <td>
+        <Link to={`/user/${user.login}`}>
+          {user.login}
+        </Link>
+      </td>
       <td className="avatar-container">
         <img className="avatar" src={user.avatar_url} alt="User Avatar" />
       </td>

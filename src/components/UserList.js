@@ -1,17 +1,20 @@
 import React from 'react';
-import Search from '../Search';
+import Search from './Search';
 import UserCard from './UserCard';
-// import {getMockUsers} from '../mocks/users';
-import {Link, useHistory} from 'react-router-dom';
+import {getMockUsers} from '../mocks/users';
+import {useHistory} from 'react-router-dom';
 
 const Pagination = ({page, previous, next}) => {
   return (
     <div className="pagination">
-      {page === 1
-        ? <div onClick={next}>Next</div>
-        : <div>
-            <div onClick={previous}>Previous</div><div onClick={next}>Next</div>
-          </div>}
+      <button
+        className="pagination-button"
+        disabled={page === 1}
+        onClick={previous}
+      >
+        Previous
+      </button>
+      <button className="pagination-button" onClick={next}>Next</button>
     </div>
   );
 };
@@ -27,7 +30,7 @@ function UserList({match}) {
   React.useEffect (
     () => {
       fetch (
-        `http://localhost:5000/users?search=${searchValue}&page=${match.params.page}`
+        `http://localhost:5000/api/users?search=${searchValue}&page=${match.params.page}`
       )
         .then (res => res.json ())
         .then (data => setUsers (data.items));
@@ -35,12 +38,12 @@ function UserList({match}) {
     [page]
   );
 
-  //   React.useEffect (() => {
-  //     getMockUsers ().then (data => {
-  //       console.log (data);
-  //       setUsers (data.items);
-  //     });
-  //   }, []);
+  // React.useEffect (() => {
+  //   getMockUsers ().then (data => {
+  //     console.log (data);
+  //     setUsers (data.items);
+  //   });
+  // }, []);
 
   const handleChange = newValue => {
     setSearchValue (newValue);
@@ -56,7 +59,7 @@ function UserList({match}) {
   const handlePrevious = () => {
     // It should not be possible to go to a page less than 1
     const newPage = page - 1;
-    if (newPage <= 1) {
+    if (newPage < 1) {
       return;
     } else {
       history.push (`/search/${match.params.user}/${newPage}`);
@@ -70,30 +73,29 @@ function UserList({match}) {
 
   return (
     <div className="user-list-container">
-      <div className="top-nav">
-        <Link className="home-button" to="/">Home</Link>
+      <div className="user-list-content">
         <form className="user-list-search" onSubmit={handleSubmit}>
           <Search onChange={handleChange} value={searchValue} />
         </form>
+        <div className="user-table-container">
+          <table className="user-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Avatar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map (user => {
+                return (
+                  <UserCard key={user.id} onClick={handleClick} user={user} />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <Pagination page={page} previous={handlePrevious} next={handleNext} />
       </div>
-      <div className="user-table-container">
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Avatar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map (user => {
-              return (
-                <UserCard key={user.id} onClick={handleClick} user={user} />
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <Pagination page={page} previous={handlePrevious} next={handleNext} />
     </div>
   );
 }
