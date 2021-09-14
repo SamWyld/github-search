@@ -35,8 +35,12 @@ Github REST API:
 
 Notes:
 
-For the first time, I've decided to use CSS directly from a single file. I thought it might have saved time. In retrospect, it's become quite cluttered and hard to navigate. If I were to come back to the project, I'd most likely use Styles Components. I like creating reusable little bits of code that I can reuse that I felt I lost a little bit in this case.
+For the first time, I decided to use CSS directly from a single file. I thought it might have saved time. In retrospect, it's become quite cluttered and hard to navigate. If I were to come back to the project, I'd most likely use Styles Components. I like creating reusable little bits of code that I can reuse. I feel as if that had been lost in this case. When looking at the UI I normally like to create things with the purpose in mind. This task's requirements didn't really tell me anything about how the user would like to use the application. I found myself having to have a think about what the use case could be. In the end, I decided to go for a very simple look where information is given simply.
+
+In addition, some of the styles don't scale well for all viewports. If given more time, I would make sure all the styles scale dependant on a user's screen/window size. Most of them do scale however there are some positioning styles that don't translate well.
 
 Furthermore, I'd look for some safety when it comes to types. Having no history using the Github API, I found myself writing comments that detailed the type signatures. Since I was already there writing the type signatures, it would have been optimal to have the types enforced at the compiler level as TypeScript would. Realistically, all I did was leave myself open to human error.
 
 I decided to create the user list using a table. Using a table seemed like the most logical thing and kept to the best standards. However, I now realise that I should have used cards. The users don't have a lot of information. If a user were looking at the table, they would find it hard to follow. Using cards would have allowed me to show much more information with less confusion.
+
+Cypress is a bit of a must-have tool for me. Cypress offers solid E2E testing that can aid in testing, ensuring no regression.
