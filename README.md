@@ -2,6 +2,22 @@
 
 https://docs.github.com/en/rest
 
+Getting started:
+
+To run application run:
+
+```
+npm i
+
+npm run start
+```
+
+To run tests after this:
+
+```
+npm run cypress:open
+```
+
 Task:
 
 - Seach box to search for username/org
